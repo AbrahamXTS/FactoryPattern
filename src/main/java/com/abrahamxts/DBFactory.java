@@ -6,8 +6,6 @@ import com.abrahamxts.adapters.*;
 
 public class DBFactory {
 
-    private static final String DB_FACTORY_PROPERTY_URL = "META-INF/DBFactory.properties";
-
     public static IDBAdapter getDBadapter(DBType dbType) {
         switch (dbType) {
             case MySQL:
@@ -21,7 +19,7 @@ public class DBFactory {
 
     public static IDBAdapter getDefaultDBAdapter() {
         try {
-            Properties properties = PropertiesUtil.loadProperty(DB_FACTORY_PROPERTY_URL);
+            Properties properties = PropertiesUtil.loadProperty("META-INF/DBFactory.properties");
 
             String defaultDBClass = properties.getProperty("DB_CLASS");
 
@@ -29,7 +27,7 @@ public class DBFactory {
 			
             return (IDBAdapter) Class.forName(defaultDBClass).getDeclaredConstructor().newInstance();
         } catch (Exception e) {
-            e.printStackTrace();
+			System.out.println("No se ha podido acceder al archivo de propiedades: " + e.getMessage());
             return null;
         }
     }

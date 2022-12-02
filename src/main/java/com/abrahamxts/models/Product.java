@@ -2,46 +2,46 @@ package com.abrahamxts.models;
 
 public class Product {
 
-    private Long idProduct;
+    private Float identificador;
 
-    private String productName;
+    private String nombre;
 
-    private double price;
+    private Float precio;
 
-    public Product(Long idProduct, String productName, double price) {
-        this.idProduct = idProduct;
-        this.productName = productName;
-        this.price = price;
+    public Product(Float identificador, String nombre, Float precio) {
+        this.identificador = identificador;
+        this.nombre = nombre;
+        this.precio = precio;
     }
 
     public Product() {}
 
-    public Long getIdProduct() {
-        return idProduct;
+    public Float getIdProduct() {
+        return identificador;
     }
 
-    public void setIdProduct(Long idProduct) {
-        this.idProduct = idProduct;
+    public void setIdProduct(Float identificador) {
+        this.identificador = identificador;
     }
 
     public String getProductName() {
-        return productName;
+        return nombre;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProductName(String nombre) {
+        this.nombre = nombre;
     }
 
-    public double getPrice() {
-        return price;
+    public Float getPrice() {
+        return precio;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPrice(Float precio) {
+        this.precio = precio;
     }
 
     @Override
     public String toString() {
-        return "Product {" + "idProduct = " + idProduct + ", productName = " + productName + ", price = " + price + '}';
+        return "Product {" + "identificador = " + identificador + ", nombre = " + nombre + ", precio = " + precio + '}';
     }
 }

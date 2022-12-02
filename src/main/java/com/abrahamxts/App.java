@@ -10,8 +10,8 @@ public class App {
 
     public static void main(String[] args) throws SQLException {
 	
-        Product productA = new Product(1L, "Producto A", 100);
-        Product productB = new Product(2L, "Producto B", 100);
+        Product productA = new Product(1F, "Producto A", 100F);
+        Product productB = new Product(2F, "Producto B", 100F);
         
         ProductDAO productDAO = new ProductDAO();
         
@@ -20,7 +20,7 @@ public class App {
         
         List<Product> products = productDAO.findAllProducts();
 
-        System.out.println("Product size ==> " + products.size());
+        System.out.println("Total de productos ==> " + products.size());
 		
         for (Product product : products){
             System.out.println(product);
