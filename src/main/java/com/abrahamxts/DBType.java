@@ -1,5 +1,5 @@
-package abrahamxts.factorymethod;
+package com.abrahamxts;
 
 public enum DBType {
-    MySQL, Oracle,
+	MySQL, Oracle,
 }

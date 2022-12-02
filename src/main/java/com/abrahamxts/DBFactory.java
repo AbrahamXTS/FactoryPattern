@@ -1,32 +1,33 @@
-package abrahamxts.factorymethod;
+package com.abrahamxts;
 
 import java.util.Properties;
-import abrahamxts.factorymethod.impl.MySQLDBAdapter;
-import abrahamxts.factorymethod.impl.OracleDBAdapter;
-import abrahamxts.factorymethod.util.PropertiesUtil;
+import com.abrahamxts.util.*;
+import com.abrahamxts.adapters.*;
 
 public class DBFactory {
 
     private static final String DB_FACTORY_PROPERTY_URL = "META-INF/DBFactory.properties";
-    private static final String DEFAULT_DB_CLASS_PROP = "defaultDBClass";
 
     public static IDBAdapter getDBadapter(DBType dbType) {
         switch (dbType) {
             case MySQL:
                 return new MySQLDBAdapter();
             case Oracle:
-                return new OracleDBAdapter();
+                return new PostgreSQLDBAdapter();
             default:
-                throw new IllegalArgumentException("Not supported");
+                throw new IllegalArgumentException("Base de datos no soportada.");
         }
     }
 
     public static IDBAdapter getDefaultDBAdapter() {
         try {
-            Properties prop = PropertiesUtil.loadProperty(DB_FACTORY_PROPERTY_URL);
-            String defaultDBClass = prop.getProperty(DEFAULT_DB_CLASS_PROP);
-            System.out.println("DefaultDBClass ==> " + defaultDBClass);
-            return (IDBAdapter) Class.forName(defaultDBClass).newInstance();
+            Properties properties = PropertiesUtil.loadProperty(DB_FACTORY_PROPERTY_URL);
+
+            String defaultDBClass = properties.getProperty("DB_CLASS");
+
+            System.out.println("Clase de datos por defecto ==> " + defaultDBClass);
+			
+            return (IDBAdapter) Class.forName(defaultDBClass).getDeclaredConstructor().newInstance();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

@@ -1,7 +1,7 @@
-package abrahamxts.factorymethod;
+package com.abrahamxts;
 
 import java.sql.Connection;
 
 public interface IDBAdapter {
-    public Connection getConnection();
+	public Connection getConnection();
 }

@@ -1,20 +1,17 @@
 package com.abrahamxts;
 
-/**
- * Hello world!
- *
- */
-import java.sql.SQLException;
 import java.util.List;
-import com.abrahamxts.dao.ProductDAO;
+import java.sql.SQLException;
+
+import com.abrahamxts.DAO.ProductDAO;
 import com.abrahamxts.models.Product;
 
 public class App {
 
     public static void main(String[] args) throws SQLException {
 	
-        Product productA = new Product(1L, "Product A", 100);
-        Product productB = new Product(2L, "Product B", 100);
+        Product productA = new Product(1L, "Producto A", 100);
+        Product productB = new Product(2L, "Producto B", 100);
         
         ProductDAO productDAO = new ProductDAO();
         
@@ -25,7 +22,7 @@ public class App {
 
         System.out.println("Product size ==> " + products.size());
 		
-        for(Product product : products){
+        for (Product product : products){
             System.out.println(product);
         }
     }

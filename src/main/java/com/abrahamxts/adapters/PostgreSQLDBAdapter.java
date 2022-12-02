@@ -20,9 +20,15 @@ public class PostgreSQLDBAdapter implements IDBAdapter {
 
     @Override
     public Connection getConnection() {
+
+        Properties properties = PropertiesUtil.loadProperty(DB_PROPERTIES);
+
+		String user = properties.getProperty("USER");
+        String password = properties.getProperty("PASSWORD");
+
         try {
             String connectionString = createConnectionString();
-            Connection connection = DriverManager.getConnection(connectionString);
+            Connection connection = DriverManager.getConnection(connectionString, user, password);
 
             System.out.println("Clase de conexión ==> " + connection.getClass().getName());
 
@@ -39,10 +45,8 @@ public class PostgreSQLDBAdapter implements IDBAdapter {
         String host = properties.getProperty("HOST");
         String port = properties.getProperty("PORT");
         String db = properties.getProperty("DATABASE");
-        String user = properties.getProperty("USER");
-        String password = properties.getProperty("PASSWORD");
 
-        String connectionString = "jdbc:postgresql://" + host + ":" + port + "/" + db + "?user=" + user + "&password=" + password;
+        String connectionString = "jdbc:postgresql://" + host + ":" + port + "/" + db;
         
 		System.out.println("String de conexión ==> " + connectionString);
         
