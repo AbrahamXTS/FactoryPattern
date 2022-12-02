@@ -9,19 +9,20 @@ import com.abrahamxts.models.Product;
 public class App {
 
     public static void main(String[] args) throws SQLException {
+
+		// Crea tu producto con el constructor aquí
+		
 	
-        Product productA = new Product(1F, "Producto A", 100F);
-        Product productB = new Product(2F, "Producto B", 100F);
-        
         ProductDAO productDAO = new ProductDAO();
         
-        productDAO.saveProduct(productA);
-        productDAO.saveProduct(productB);
+		// Pasa tu producto a esta función para guardarlo dentro de la base de datos.
+        productDAO.saveProduct();
         
         List<Product> products = productDAO.findAllProducts();
 
         System.out.println("Total de productos ==> " + products.size());
 		
+		// Listando todos los productos de la base de datos.
         for (Product product : products){
             System.out.println(product);
         }
