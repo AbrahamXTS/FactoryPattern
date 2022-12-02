@@ -368,8 +368,20 @@ public class PropertiesUtil {
 git clone https://github.com/AbrahamXTS/FactoryPattern --branch demo
 ```
 
-Con esto habremos clonado los archivos en la branch `demo` y estaremos listos para la sesion practica.
+Con esto habremos clonado los archivos en la branch `demo`.
 
+Posterior a esto cambiamos la version del maven a la de nuestro jdk local, para esto nos ubicamos en el archivo `pom.xml` y en la etiqueta de `properties`
+
+```xml
+<properties>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<maven.compiler.source>17</maven.compiler.source>
+	<maven.compiler.target>17</maven.compiler.target>
+</properties>
+```
+y cambiamos en las lineas `<maven.compiler.source>17</maven.compiler.source>` y `<maven.compiler.target>17</maven.compiler.target>` el valor de 17 al valor de su version de jdk.
+
+Para consultar su version de jdk les dejamos un tutorial [aqui](https://www.java.com/es/download/help/version_manual.html).
 
 ### Paso #1 - `DBFactory.java` y `getDBAdapter`
 
@@ -451,8 +463,7 @@ public static IDBAdapter getDefaultDBAdapter() {
 ```
 
 
-Una vez listo, no queda mas que guardar y ejecutar la clase `App.java` para probar el resultado/
-
+Una vez listo, no queda mas que guardar y ejecutar la clase `App.java` con el codigo ya existente o modificarlo a su gusto.
 
 
 
@@ -499,5 +510,39 @@ public class DBFactory {
     }
 }
 ```
+
+### `App.java`
+```java
+package com.abrahamxts;
+
+import java.util.List;
+import java.sql.SQLException;
+
+import com.abrahamxts.DAO.ProductDAO;
+import com.abrahamxts.models.Product;
+
+public class App {
+
+    public static void main(String[] args) throws SQLException {
+	
+        Product productA = new Product(1F, "Producto A", 100F);
+        Product productB = new Product(2F, "Producto B", 100F);
+        
+        ProductDAO productDAO = new ProductDAO();
+        
+        productDAO.saveProduct(productA);
+        productDAO.saveProduct(productB);
+        
+        List<Product> products = productDAO.findAllProducts();
+
+        System.out.println("Total de productos ==> " + products.size());
+		
+        for (Product product : products){
+            System.out.println(product);
+        }
+    }
+}
+```
+
 
 
