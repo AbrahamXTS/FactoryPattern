@@ -10,7 +10,7 @@ public class DBFactory {
         switch (dbType) {
             case MySQL:
                 return new MySQLDBAdapter();
-            case Oracle:
+            case PostgreSQL:
                 return new PostgreSQLDBAdapter();
             default:
                 throw new IllegalArgumentException("Base de datos no soportada.");
